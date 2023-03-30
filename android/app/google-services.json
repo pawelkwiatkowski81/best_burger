@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1059651712956",
+    "project_id": "best-burger-777",
+    "storage_bucket": "best-burger-777.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059651712956:android:c77c024638cffb683c1db9",
+        "android_client_info": {
+          "package_name": "com.pawelkwiatkowski.best_burger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059651712956-tb0g78hapso6bmgd36ipojricsquj4gr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN8XsKDsrkRgeX7rEWIJdr4WWZ6Kttw5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059651712956-tb0g78hapso6bmgd36ipojricsquj4gr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
