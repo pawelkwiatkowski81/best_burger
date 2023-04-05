@@ -16,6 +16,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var errorMessage = '';
+  var isCratingAccount = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('LOGIN'),
+              Text(isCratingAccount == true ? 'SIGN UP' : 'LOGIN'),
               const SizedBox(height: 20),
               TextField(
                 decoration: const InputDecoration(hintText: 'E-Mail'),
@@ -43,6 +44,33 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                 onPressed: () async {
+                  if (isCratingAccount == true) {
+                    //Sign UP !!!
+                    try {
+                      await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text,
+                      );
+                    } catch (error) {
+                      setState(() {
+                        errorMessage = error.toString();
+                      });
+                    }
+                  } else {
+                    // LogIn !!!
+                    try {
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text,
+                      );
+                    } catch (error) {
+                      setState(() {
+                        errorMessage = error.toString();
+                      });
+                    }
+                  }
+
                   try {
                     await FirebaseAuth.instance.signInWithEmailAndPassword(
                       email: widget.emailController.text,
@@ -54,8 +82,33 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   }
                 },
-                child: const Text('Login'),
-              )
+                child: Text(isCratingAccount == true ? 'SIGN UP' : 'LOGIN'),
+              ),
+              const SizedBox(height: 20),
+              if (isCratingAccount == false) ...[
+                TextButton(
+                  onPressed: () {
+                    setState(
+                      () {
+                        isCratingAccount = true;
+                      },
+                    );
+                  },
+                  child: const Text('SIGN UP'),
+                )
+              ],
+              if (isCratingAccount == true) ...[
+                TextButton(
+                  onPressed: () {
+                    setState(
+                      () {
+                        isCratingAccount = false;
+                      },
+                    );
+                  },
+                  child: const Text('Do You have an Account ?'),
+                )
+              ],
             ],
           ),
         ),
