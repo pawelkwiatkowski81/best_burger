@@ -26,27 +26,36 @@ class RestaurantPageContent extends StatelessWidget {
         return ListView(
           children: [
             for (final document in documents) ...[
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          document['name'],
-                        ),
-                        Text(
-                          document['burger'],
-                          style: const TextStyle(
-                            color: Colors.amber,
+              Dismissible(
+                key: ValueKey(document.id),
+                onDismissed: (_) {
+                  FirebaseFirestore.instance
+                      .collection('Restaurants')
+                      .doc(document.id)
+                      .delete();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            document['name'],
                           ),
-                        ),
-                      ],
-                    ),
-                    Text(document['rating'].toString()),
-                  ],
+                          Text(
+                            document['burger'],
+                            style: const TextStyle(
+                              color: Colors.amber,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(document['rating'].toString()),
+                    ],
+                  ),
                 ),
               ),
             ],
