@@ -1,5 +1,5 @@
-import 'package:best_burger/app/home/home_page.dart';
-import 'package:best_burger/app/login/login_page.dart';
+import 'package:best_burger/app/features/home/home_page.dart';
+import 'package:best_burger/app/features/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
